@@ -143,10 +143,25 @@ This Warehouse Inventory Management System is a Django-based application that al
 
 ## API Endpoints
 
-- POST /api/token/ - Get JWT token
-- POST /api/token/refresh/ - Refresh JWT token
-- /api/products/ - Product management (CRUD)
-- /api/stock-transactions/ - Stock transactions
+1. **Authentication:**
+    - POST /api/token/: Obtain JWT token for authentication.
+    - POST /api/token/refresh/: Refresh JWT token.
+
+2. **Product Management (Accessible by Admin):**
+    - POST /api/products/: Create a new product.
+    - GET /api/products/: List all products.
+    - GET /api/products/{id}/: Get details of a product.
+    - PUT /api/products/{id}/: Update product information.
+    - DELETE /api/products/{id}/: Delete a product.
+
+3. **Stock Transactions (Accessible by Staff and Admin):**
+    - POST /api/stock-transactions/: Record a stock entry or exit.
+
+4. **Critical Stock Alert:**
+    - The system sends an email notification to the admin when stock falls below the minimum level.
+
+5. **Reports:**
+    - Fetch the current stock status, highlighting products with critical stock levels, generated automatically at 23:00 daily and send to all admins.
 
 ## Testing
 
