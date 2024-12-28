@@ -174,6 +174,13 @@ python manage.py test
 
 The daily stock report is generated automatically at 23:00. Make sure to configure Celery and Redis/RabbitMQ for task processing.
 
+- To trigger the task manually, use the python shell with:
+
+```bash
+from inventory.tasks import send_stock_status_report
+send_stock_status_report.delay()
+```
+
 ## Troubleshooting
 
 If you encounter any issues, please refer to the following:
