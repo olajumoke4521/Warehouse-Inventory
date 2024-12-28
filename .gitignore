@@ -1,0 +1,15 @@
+# Python cache files
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual environment directory
+venv/
+
+# Django-related files
+*.sqlite3
+*.db
+
+# Logs
+*.log
+

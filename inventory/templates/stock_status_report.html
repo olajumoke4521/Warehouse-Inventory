@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stock Status Report</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .critical {
+            background-color: #f8d7da; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Stock Status Report</h1>
+    <p><strong>Date:</strong> {{ report_date }}</p>
+    <h3>All Products</h3>
+    <p><strong>Note:</strong> Products highlighted in light red are product at critical level, meaning their stock levels have reached or fallen below the minimum.</p>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Stock Quantity</th>
+            <th>Minimum Stock Level</th>
+        </tr>
+        {% for product in products %}
+        <tr class="{% if product.stock_quantity <= product.min_stock_level %}critical{% endif %}">
+            <td>{{ product.name }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.stock_quantity }}</td>
+            <td>{{ product.min_stock_level }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
