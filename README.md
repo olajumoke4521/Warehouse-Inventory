@@ -33,7 +33,7 @@ This Warehouse Inventory Management System is a Django-based application that al
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/yourusername/warehouse_inventory.git
+    git clone https://github.com/olajumoke4521/Warehouse-Inventory.git
     cd warehouse_inventory
     ```
 
