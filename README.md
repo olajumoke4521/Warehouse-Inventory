@@ -25,7 +25,7 @@ This Warehouse Inventory Management System is a Django-based application that al
 
     ```bash
     psql -U postgres
-    CREATE DATABASE inventory_db;
+    CREATE DATABASE inventory_db
     ```
 
 ### Step-by-Step Installation
@@ -170,5 +170,3 @@ If you encounter any issues, please refer to the following:
 ---
 
 For any questions or additional support, please feel free to contact [haonatararomi@gmail.com].
-# Warehouse-Inventory
-This Warehouse Inventory Management System is a Django-based application that allows admins to manage products, stock transactions, and receive critical stock alerts. Staff members can also add stock transactions. The system uses Celery for background task processing and WeasyPrint for generating PDF reports.
