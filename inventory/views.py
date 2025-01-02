@@ -265,17 +265,9 @@ class StockTransactionViewSet(viewsets.ModelViewSet):
             )
             
         summary = {
-            'transaction_types': queryset.values('transaction_type').annotate(
-                count=Count('id')
-            ),
-            'transfer_types': queryset.values('transfer_type').annotate(
-                count=Count('id')
-            ),
-            'top_products': queryset.values(
-                'product__name'
-            ).annotate(
-                count=Count('id')
-            ).order_by('-count')[:10],
+            'transaction_types': queryset.values('transaction_type').annotate(count=Count('id', distinct=True)).order_by('transaction_type'),
+            'transfer_types': queryset.values('transfer_type').annotate(count=Count('id', distinct=True)).order_by('transfer_type'),
+            'top_products': queryset.values('product__name').annotate(count=Count('id', distinct=True)).order_by('-count')[:5],
             'warehouse_stats': self.get_warehouse_stats(queryset)
         }
         
