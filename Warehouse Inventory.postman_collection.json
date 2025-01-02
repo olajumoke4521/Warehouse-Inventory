@@ -8,13 +8,13 @@
 	},
 	"item": [
 		{
-			"name": "Api Token",
+			"name": "Login",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"staff1\",\r\n    \"password\": \"staffpassword\"\r\n}",
+					"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"Haonat@4521\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -22,7 +22,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/token/",
+					"raw": "http://127.0.0.1:8000/api/login/",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -33,7 +33,7 @@
 					"port": "8000",
 					"path": [
 						"api",
-						"token",
+						"login",
 						""
 					]
 				}
@@ -82,7 +82,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MTk5ODcyLCJpYXQiOjE3MzUxOTkxODgsImp0aSI6Ijg0MzZhM2NiNzhiNTQxN2Q4NGEzYmUwNzg0OWNkNTAyIiwidXNlcl9pZCI6M30.n2xsWT1mKmyJh7JemjvoRzHl-8N7_BGY6sROZRKYEKk",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1ODE3NTkwLCJpYXQiOjE3MzU3MzExOTAsImp0aSI6IjFkNGE1MGZhZmY1NDQyNWZhOGYyYWJjMjI2MGY4YzUwIiwidXNlcl9pZCI6MX0.tIOQ8gtXMGdcYDhh8DP4iOnJaJ5cCLHdW-WOcZXIX4I",
 							"type": "string"
 						}
 					]
@@ -91,7 +91,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Laptop\",\r\n    \"description\": \"A gaming laptop\",\r\n    \"price\": \"1200\",\r\n    \"stock_quantity\": 100,\r\n    \"critical_stock_level\": 10\r\n}\r\n",
+					"raw": "{\r\n    \"name\": \"Product E\",\r\n    \"description\": \"Description of Product E\",\r\n    \"sku\": \"PROD-E\",\r\n    \"minimum_stock\": 10\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -229,6 +229,40 @@
 			"response": []
 		},
 		{
+			"name": "Get Warehouse",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1ODE1NzM2LCJpYXQiOjE3MzU3MjkzMzYsImp0aSI6IjhjZTgyNTExYzA1ZjRlYzJhNzU1NjcxOGM3MjE5NjVhIiwidXNlcl9pZCI6Mn0.kBOAitGcz2ca6VrMb-JJn5gfGZPyx37iLdtqsnLHqHk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/warehouses/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"warehouses",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Delete Product",
 			"request": {
 				"auth": {
@@ -270,7 +304,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjE0MTE1LCJpYXQiOjE3MzUxOTkxODgsImp0aSI6IjU5YjgxMjM5YTMyNTRmYjdiZGUxNTJhOGNmMWU2M2VhIiwidXNlcl9pZCI6M30.kTukdELx6zINv-xnucwtjfjifGOkTa-dp3NIG7WgOlQ",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1OTI1OTA5LCJpYXQiOjE3MzU4Mzk1MDksImp0aSI6IjI2MzIzOTkyNzU1MTQyNmI4OWZjNjA4NjVjYzY1MWUyIiwidXNlcl9pZCI6MX0.yDaOnAJTkHkp6BSEDG4lbMoF_fdF81ymQ7o1AysgP4Y",
 							"type": "string"
 						}
 					]
@@ -279,7 +313,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"product\": 1,\r\n    \"quantity\": 100,\r\n    \"transaction_type\": \"out\"\r\n}",
+					"raw": "{\r\n    \"source_warehouse\": 2,\r\n    \"destination_warehouse\": 1,\r\n    \"product\": 1,\r\n    \"quantity\": 1,\r\n    \"transaction_type\": \"WW\",\r\n    \"transfer_type\": \"SHIP\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -300,6 +334,490 @@
 						"api",
 						"stock-transactions",
 						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Warehouse",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1ODE3NTkwLCJpYXQiOjE3MzU3MzExOTAsImp0aSI6IjFkNGE1MGZhZmY1NDQyNWZhOGYyYWJjMjI2MGY4YzUwIiwidXNlcl9pZCI6MX0.tIOQ8gtXMGdcYDhh8DP4iOnJaJ5cCLHdW-WOcZXIX4I",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Warehouse 3\",\r\n    \"location\": \"Canada\",\r\n    \"authorized_users\": [1, 3]  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/warehouses/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"warehouses",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Customer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1ODA4NTI0LCJpYXQiOjE3MzU3MjIxMjQsImp0aSI6ImJjNDdiYmJhYjkxNjQyZTQ5YjQwZmM5NzFhY2ExYjlhIiwidXNlcl9pZCI6MX0.vSiOvq1nekQ3D9oQe_AUUETQcB4wMEk2-tqwNTJDw7w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Customer A\",\r\n    \"contact_person\": \"John Doe\",\r\n    \"email\": \"john@example.com\",\r\n    \"phone\": \"1234567890\",\r\n    \"customer_type\": \"INDIVIDUAL\",\r\n    \"address\": \"123 Main St\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/customers/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"customers",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Warehouse-stocks",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1ODA4NTI0LCJpYXQiOjE3MzU3MjIxMjQsImp0aSI6ImJjNDdiYmJhYjkxNjQyZTQ5YjQwZmM5NzFhY2ExYjlhIiwidXNlcl9pZCI6MX0.vSiOvq1nekQ3D9oQe_AUUETQcB4wMEk2-tqwNTJDw7w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"warehouse\": 3,\r\n    \"product\": 5,\r\n    \"quantity\": 100\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/warehouse-stocks/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"warehouse-stocks",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All stock transactions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1OTI3ODgzLCJpYXQiOjE3MzU4NDE0ODMsImp0aSI6Ijc5MjdmY2Q1M2I3MDQ2YWViZjU1MzU5MzIwMzZkMDU1IiwidXNlcl9pZCI6MX0.cmTBxsDuBvdN5c2xvOPWrSuWNDIqjfcCQnoIr4G4ezw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/stock-transactions/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"stock-transactions",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Specific warehouse",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1OTI3ODgzLCJpYXQiOjE3MzU4NDE0ODMsImp0aSI6Ijc5MjdmY2Q1M2I3MDQ2YWViZjU1MzU5MzIwMzZkMDU1IiwidXNlcl9pZCI6MX0.cmTBxsDuBvdN5c2xvOPWrSuWNDIqjfcCQnoIr4G4ezw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/stock-transactions/?warehouse=3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"stock-transactions",
+						""
+					],
+					"query": [
+						{
+							"key": "warehouse",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filter by date range",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1OTA0NzA2LCJpYXQiOjE3MzU4MTgzMDYsImp0aSI6IjRkODMzMGY5OGRkNTRjOTA4YjdkZmZlMzY4OTU1MGY3IiwidXNlcl9pZCI6MX0.gN-U872LrDG5hcSltG1tWf1KGFiMxFitXmT74Tuo9So",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/stock-transactions/?start_date=2025-01-01&end_date=2025-01-31",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"stock-transactions",
+						""
+					],
+					"query": [
+						{
+							"key": "start_date",
+							"value": "2025-01-01"
+						},
+						{
+							"key": "end_date",
+							"value": "2025-01-31"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filter by transaction type",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1OTA0NzA2LCJpYXQiOjE3MzU4MTgzMDYsImp0aSI6IjRkODMzMGY5OGRkNTRjOTA4YjdkZmZlMzY4OTU1MGY3IiwidXNlcl9pZCI6MX0.gN-U872LrDG5hcSltG1tWf1KGFiMxFitXmT74Tuo9So",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/stock-transactions/?transaction_type=WW",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"stock-transactions",
+						""
+					],
+					"query": [
+						{
+							"key": "transaction_type",
+							"value": "WW"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Combine filter",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1OTA0NzA2LCJpYXQiOjE3MzU4MTgzMDYsImp0aSI6IjRkODMzMGY5OGRkNTRjOTA4YjdkZmZlMzY4OTU1MGY3IiwidXNlcl9pZCI6MX0.gN-U872LrDG5hcSltG1tWf1KGFiMxFitXmT74Tuo9So",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/stock-transactions/?warehouse=1&transaction_type=WC&start_date=2025-01-01&end_date=2025-01-31",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"stock-transactions",
+						""
+					],
+					"query": [
+						{
+							"key": "warehouse",
+							"value": "1"
+						},
+						{
+							"key": "transaction_type",
+							"value": "WC"
+						},
+						{
+							"key": "start_date",
+							"value": "2025-01-01"
+						},
+						{
+							"key": "end_date",
+							"value": "2025-01-31"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List warehouse-stocks",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1OTA0NzA2LCJpYXQiOjE3MzU4MTgzMDYsImp0aSI6IjRkODMzMGY5OGRkNTRjOTA4YjdkZmZlMzY4OTU1MGY3IiwidXNlcl9pZCI6MX0.gN-U872LrDG5hcSltG1tWf1KGFiMxFitXmT74Tuo9So",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/warehouse-stocks/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"warehouse-stocks",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Available warehouse",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1OTI3ODgzLCJpYXQiOjE3MzU4NDE0ODMsImp0aSI6Ijc5MjdmY2Q1M2I3MDQ2YWViZjU1MzU5MzIwMzZkMDU1IiwidXNlcl9pZCI6MX0.cmTBxsDuBvdN5c2xvOPWrSuWNDIqjfcCQnoIr4G4ezw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/stock-transactions/available_warehouses/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"stock-transactions",
+						"available_warehouses",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Warehouse Summary",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1OTI3ODgzLCJpYXQiOjE3MzU4NDE0ODMsImp0aSI6Ijc5MjdmY2Q1M2I3MDQ2YWViZjU1MzU5MzIwMzZkMDU1IiwidXNlcl9pZCI6MX0.cmTBxsDuBvdN5c2xvOPWrSuWNDIqjfcCQnoIr4G4ezw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/stock-transactions/warehouse_summary/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"stock-transactions",
+						"warehouse_summary",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Warehouse summary for each warehouse",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1OTI3ODgzLCJpYXQiOjE3MzU4NDE0ODMsImp0aSI6Ijc5MjdmY2Q1M2I3MDQ2YWViZjU1MzU5MzIwMzZkMDU1IiwidXNlcl9pZCI6MX0.cmTBxsDuBvdN5c2xvOPWrSuWNDIqjfcCQnoIr4G4ezw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/stock-transactions/warehouse_summary/?warehouse=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"stock-transactions",
+						"warehouse_summary",
+						""
+					],
+					"query": [
+						{
+							"key": "warehouse",
+							"value": "1"
+						}
 					]
 				}
 			},

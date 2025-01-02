@@ -1,41 +1,43 @@
+
 from celery import shared_task
-from datetime import datetime
-from django.core.mail import EmailMessage
+from django.core.mail import send_mail
 from django.template.loader import render_to_string
+from django.utils import timezone
+from django.contrib.auth.models import User
 from weasyprint import HTML
-from .models import Product
-from django.contrib.auth import get_user_model
-from django.conf import settings  
+from django.conf import settings
+from .models import WarehouseStock, Warehouse
+from django.core.mail import EmailMessage
 
 
 @shared_task
 def send_stock_status_report():
     """
-    Sends the stock status report to admin users via email.
+    Generate and send daily stock report
     """
-    products = Product.objects.all()
+    # Get all stocks
+    stocks = WarehouseStock.objects.select_related('product', 'warehouse').all()
     
-    context = {
-        'products': products,
-        'report_date': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+    # Prepare report data
+    report_data = {
+        'stocks': stocks,
+        'timestamp': timezone.now(),
+        'critical_count': sum(1 for stock in stocks 
+                            if stock.quantity <= stock.product.minimum_stock),
+        'total_count': len(stocks)
     }
     
-    # Render the HTML template
-    html_string = render_to_string('stock_status_report.html', context)
+    # Generate HTML report
+    html_content = render_to_string('stock_status_report.html', report_data)
     
-    # Convert HTML to PDF
-    html = HTML(string=html_string)
-    pdf_file = html.write_pdf()
+    # Convert to PDF
+    pdf_file = HTML(string=html_content).write_pdf()
     
-
-    # Fetch all admin users
-    User = get_user_model()
-    admin_emails = User.objects.filter(role='admin').values_list('email', flat=True)
-
-    # Send email with the PDF attachment
+    # Send to admin users
+    admin_emails = User.objects.filter(is_superuser=True).values_list('email', flat=True)
     email = EmailMessage(
-        subject="Daily Stock Status Report",
-        body="Please find attached the daily stock status report.\n\nNote: Products highlighted in light red indicate critical stock levels.",
+        subject=f'Daily Stock Report - {timezone.now().strftime("%Y-%m-%d")}',
+        body="Please find attached the daily stock status report.",
         from_email=settings.EMAIL_HOST_USER,
         to=list(admin_emails),
     )

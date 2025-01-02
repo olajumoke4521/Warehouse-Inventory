@@ -1,48 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Stock Status Report</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .summary {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
         }
         th, td {
-            border: 1px solid black;
-            padding: 8px;
+            padding: 12px;
+            border: 1px solid #ddd;
             text-align: left;
         }
         th {
-            background-color: #f2f2f2;
+            background-color: #f5f5f5;
+            font-weight: bold;
         }
         .critical {
-            background-color: #f8d7da; 
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .ok {
+            color: #28a745;
+        }
+        .timestamp {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>Stock Status Report</h1>
-    <p><strong>Date:</strong> {{ report_date }}</p>
-    <h3>All Products</h3>
-    <p><strong>Note:</strong> Products highlighted in light red are product at critical level, meaning their stock levels have reached or fallen below the minimum.</p>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Stock Quantity</th>
-            <th>Minimum Stock Level</th>
-        </tr>
-        {% for product in products %}
-        <tr class="{% if product.stock_quantity <= product.min_stock_level %}critical{% endif %}">
-            <td>{{ product.name }}</td>
-            <td>{{ product.description }}</td>
-            <td>{{ product.price }}</td>
-            <td>{{ product.stock_quantity }}</td>
-            <td>{{ product.min_stock_level }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+    <div class="container">
+        <h2>Daily Stock Report</h2>
+        
+        <div class="summary">
+            <h3>Summary</h3>
+            <p>Total Products in Stock: {{ total_count }}</p>
+            <p>Products at Critical Level: {{ critical_count }}</p>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Warehouse</th>
+                    <th>Product</th>
+                    <th>Current Stock</th>
+                    <th>Minimum Stock</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stock in stocks %}
+                    <tr>
+                        <td>{{ stock.warehouse.name }}</td>
+                        <td>{{ stock.product.name }}</td>
+                        <td {% if stock.quantity <= stock.product.minimum_stock %}class="critical"{% endif %}>
+                            {{ stock.quantity }}
+                        </td>
+                        <td>{{ stock.product.minimum_stock }}</td>
+                        <td {% if stock.quantity <= stock.product.minimum_stock %}class="critical"{% else %}class="ok"{% endif %}>
+                            {% if stock.quantity <= stock.product.minimum_stock %}
+                                CRITICAL
+                            {% else %}
+                                OK
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <p class="timestamp">Generated at: {{ timestamp }}</p>
+    </div>
 </body>
 </html>

@@ -127,40 +127,67 @@ This Warehouse Inventory Management System is a Django-based application that al
     - Log in with the superuser credentials.
 
 2. **Add Users and Assign Roles:**
-    - Create Admin and Staff users and assign them to their respective roles on admin panel or use python shell
+    - Create Admin and Staff users and assign them to their respective roles on admin panel or use python
 
-     ```bash
-    python manage.py shell
-    ```
-    - from inventory.models import User
-    - user = User.objects.create_user(username="testuser", password="testpass", role="staff" email="testuser@example.com")
+3. **Warehouse Management:**
+    - Admins can add, update, and delete warehouses.
 
-3. **Product Management:**
+4. **Customer Management:**
+    - Admins can add, update, and delete customers.
+
+5. **Product Management:**
     - Admins can add, update, and delete products.
 
-4. **Stock Transactions:**
+6. **Warehouse Stocks Management:**
+    - Admins can add, update, and delete products to warehouse .
+
+7. **Stock Transactions:**
     - Admins and Staff can add stock transactions (in/out).
 
 ## API Endpoints
 
 1. **Authentication:**
-    - POST /api/token/: Obtain JWT token for authentication.
+    - POST /api/login/: Login User for authentication.
     - POST /api/token/refresh/: Refresh JWT token.
+    - POST /api/logout/: Logout User for authentication.
 
-2. **Product Management (Accessible by Admin):**
-    - POST /api/products/: Create a new product.
-    - GET /api/products/: List all products.
-    - GET /api/products/{id}/: Get details of a product.
-    - PUT /api/products/{id}/: Update product information.
-    - DELETE /api/products/{id}/: Delete a product.
+2. **Warehouse Management (Accessible by Admin):**
+    - POST /api/warehouses/: Create a new warehouse.
+    - GET /api/pwarehouses/: List all warehouse.
+    - GET /api/warehouses/{id}/: Get details of a warehouse.
+    - PUT /api/warehouses/{id}/: Update warehouse information.
+    - DELETE /api/warehouses/{id}/: Delete a warehouse.
 
-3. **Stock Transactions (Accessible by Staff and Admin):**
+3. **Customer Management (Accessible by Admin):**
+    - POST /api/customers/: Create a new customer.
+    - GET /api/customers/: List all customers.
+    - GET /api/customers/{id}/: Get details of a customer.
+    - PUT /api/customers/{id}/: Update customer information.
+    - DELETE /api/customers/{id}/: Delete a customer.
+
+4. **Warehouse Stock Management (Accessible by Admin):**
+    - POST /api/warehouse-stocks/: Create a new warehouse stock.
+    - GET /api/warehouse-stocks/: List all warehouse stocks.
+    - GET /api/warehouse-stocks/{id}/: Get details of a warehouse stock.
+    - PUT /api/warehouse-stocks/{id}/: Update warehouse stock information.
+    - DELETE /api/warehouse-stocks/{id}/: Delete a warehouse stock.
+
+5. **Stock Transactions (Accessible by Staff and Admin):**
     - POST /api/stock-transactions/: Record a stock entry or exit.
+    - GET    /api/stock-transactions/
+    - GET    /api/stock-transactions/?warehouse=1
+    - PUT    /api/stock-transactions/{id}/
+    - DELETE /api/stock-transactions/{id}/
+    - GET /api/stock-transactions/?start_date=2025-01-01&end_date=2025-01-31
+    - GET /api/stock-transactions/?transaction_type=WW
+    - GET /api/stock-transactions/available_warehouses/
+    - GET /api/stock-transactions/warehouse_summary/
+    - GET /api/stock-transactions/warehouse_summary/?warehouse=1
 
-4. **Critical Stock Alert:**
+6. **Critical Stock Alert:**
     - The system sends an email notification to the admin when stock falls below the minimum level.
 
-5. **Reports:**
+7. **Reports:**
     - Fetch the current stock status, highlighting products with critical stock levels, generated automatically at 23:00 daily and send to all admins.
 
 ## Testing
