@@ -93,6 +93,8 @@ class StockTransaction(models.Model):
                 )
             if self.customer:
                 raise ValidationError('Customer should not be set for Warehouse to Warehouse transfer')
+            if self.source_warehouse == self.destination_warehouse:
+                raise ValidationError('Source and destination warehouses cannot be the same')
                 
         elif self.transaction_type == 'WC':
             if not self.source_warehouse or not self.customer:

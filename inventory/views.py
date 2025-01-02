@@ -218,6 +218,11 @@ class StockTransactionViewSet(viewsets.ModelViewSet):
         source_id = data.get('source_warehouse')
         dest_id = data.get('destination_warehouse')
         
+        if source_id and dest_id and source_id == dest_id:
+                raise serializers.ValidationError(
+                    {'error': 'Source and destination warehouses cannot be the same'}
+                )
+
         # Verify warehouse access
         if source_id:
             source_warehouse = get_object_or_404(Warehouse, id=source_id)
